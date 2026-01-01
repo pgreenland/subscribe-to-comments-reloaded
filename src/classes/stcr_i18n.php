@@ -19,7 +19,8 @@ class stcr_i18n {
     private $wp_locale = null;
 
     public function __construct() {
-        add_action( 'plugins_loaded', array( $this, 'register_js_subs_translation' ) );
+        // Wait until init so translations are available before building the JS strings.
+        add_action( 'init', array( $this, 'register_js_subs_translation' ) );
         global $wp_locale;
         $this->wp_locale = get_locale();
     }

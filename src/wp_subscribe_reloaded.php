@@ -120,7 +120,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
             add_action('_cron_log_file_purge', array($this, 'log_file_purge'), 10 );
 
             // load text domain
-            add_action( 'init', array( $this, 'subscribe_reloaded_load_plugin_textdomain' ) );
+            add_action( 'plugins_loaded', array( $this, 'subscribe_reloaded_load_plugin_textdomain' ) );
 
             // front end
             if ( ! is_admin() ) {
@@ -759,6 +759,15 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
 				return;
 			}
 
+            global $wp_query;
+
+            // PG: This feels hacky, rendering relies on the 'this_posts' filter hook, which is called multiple times in a single request.
+            // For example for header, content and footer. While we toy with the internal state below to trick WP into rendering our management page
+            // we don't want other WP_Query instances to end up with a copy of our fake post.
+            if ($_query != $wp_query) {
+                return $_posts;
+            }
+
 			try {
 
 				// get post ID
@@ -922,8 +931,6 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
 
 				}
 
-                global $wp_query;
-
 				// management page title
                 $manager_page_title = html_entity_decode(get_option('subscribe_reloaded_manager_page_title', 'Manage subscriptions'), ENT_QUOTES | ENT_HTML5, 'UTF-8');
                 if (function_exists('qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage')) {
@@ -973,6 +980,9 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
                 unset($wp_query->query["error"]);
                 $wp_query->query_vars["error"] = "";
                 $wp_query->is_404 = false;
+
+                // Set queried object
+                $wp_query->queried_object = $posts[0];
 
                 // Seems like WP adds its own HTML formatting code to the content, we don't need that here
 				remove_filter('the_content', 'wpautop');

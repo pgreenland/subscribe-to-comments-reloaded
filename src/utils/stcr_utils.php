@@ -340,7 +340,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_utils') )
             add_option( 'subscribe_reloaded_safely_uninstall', 'yes', '', 'yes' );
             add_option( 'subscribe_reloaded_stcr_position', 'no', '', 'yes' );
             add_option( 'subscribe_reloaded_reply_to', '', '', 'yes' );
-            add_option( 'subscribe_reloaded_oneclick_text', "<p>Your are not longer subscribe to the post:</p>\r\n\r\n<h3>[post_title]</h3>\r\n<br>", '', 'yes' );
+            add_option( 'subscribe_reloaded_oneclick_text', "<p>You are no longer subscribed to the post:</p>\r\n\r\n<h3>[post_title]</h3>\r\n<br>", '', 'yes' );
             add_option( 'subscribe_reloaded_subscriber_table', 'no', '', 'yes' );
             add_option( 'subscribe_reloaded_data_sanitized', 'yes', '', 'yes' );
             add_option( 'subscribe_reloaded_show_subscription_box', 'yes', '', 'yes' );
@@ -350,7 +350,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_utils') )
             add_option( 'subscribe_reloaded_checked_by_default_value', '0', '', 'yes' );
             add_option( 'subscribe_reloaded_checkbox_inline_style', 'width:30px', '', 'yes' );
             add_option( 'subscribe_reloaded_checkbox_html', "<p class='comment-form-subscriptions'><label for='subscribe-reloaded'>[checkbox_field] [checkbox_label]</label></p>", '', 'yes' );
-            add_option( 'subscribe_reloaded_checkbox_label', wp_kses( __( "Notify me of followup comments via e-mail. You can also <a href='[subscribe_link]'>subscribe</a> without commenting.", 'subscribe-to-comments-reloaded' ), wp_kses_allowed_html( 'post' ) ), '', 'yes' );
+            add_option( 'subscribe_reloaded_checkbox_label', wp_kses( __( "Notify me of follow-up comments via e-mail. You can also <a href='[subscribe_link]'>subscribe</a> without commenting.", 'subscribe-to-comments-reloaded' ), wp_kses_allowed_html( 'post' ) ), '', 'yes' );
             add_option( 'subscribe_reloaded_subscribed_label', wp_kses( __( "You are subscribed to this post. <a href='[manager_link]'>Manage</a> your subscriptions.", 'subscribe-to-comments-reloaded' ), wp_kses_allowed_html( 'post' ) ), '', 'yes' );
             add_option( 'subscribe_reloaded_subscribed_waiting_label', wp_kses( __( "Your subscription to this post needs to be confirmed. <a href='[manager_link]'>Manage your subscriptions</a>.", 'subscribe-to-comments-reloaded' ), wp_kses_allowed_html( 'post' ) ), '', 'yes' );
             add_option( 'subscribe_reloaded_author_label', wp_kses( __( "You can <a href='[manager_link]'>manage the subscriptions</a> of this post.", 'subscribe-to-comments-reloaded' ), wp_kses_allowed_html( 'post' ) ), '', 'yes' );
@@ -952,7 +952,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_utils') )
 		 */
 		public function stcr_logger( $value = '' )
 		{
-			
+
 			$should_log_data = get_option( 'subscribe_reloaded_enable_log_data', 'no' );
 			if ( $should_log_data === 'yes' ) {
 				$current = get_option( 'subscribe_reloaded_log', array() );
