@@ -103,12 +103,19 @@ ob_start();
 // email address supplied
 if ( ! empty( $email ) ) {
 
+    // Verify nonce for CSRF protection if this is a POST request
+    if ( $_SERVER['REQUEST_METHOD'] === 'POST' && ( ! isset( $_POST['stcr_request_management_nonce'] ) || ! wp_verify_nonce( $_POST['stcr_request_management_nonce'], 'stcr_request_management_action' ) ) ) {
+        echo '<p class="error">' . esc_html__( 'Security check failed. Please try again.', 'subscribe-to-comments-reloaded' ) . '</p>';
+        ob_end_clean();
+        return $output;
+    }
+
     // check email validity
     $stcr_post_email = $wp_subscribe_reloaded->stcr->utils->check_valid_email( $email );
 
     // check challenge question validity
     if ( $challenge_question_state == 'yes' ) {
-        $challenge_user_answer = sanitize_text_field( $_POST['subscribe_reloaded_challenge'] );
+        $challenge_user_answer = isset( $_POST['subscribe_reloaded_challenge'] ) ? sanitize_text_field( wp_unslash( $_POST['subscribe_reloaded_challenge'] ) ) : '';
         if ( $challenge_answer != $challenge_user_answer ) {
             $valid_challenge = false;
             $valid_all = false;
@@ -214,6 +221,7 @@ if ( ! empty( $email ) ) {
     <?php echo wp_kses( wpautop( $message ), wp_kses_allowed_html( 'post' ) ); ?>
     <?php $server_request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : ''; ?>
     <form action="<?php echo esc_url( $server_request_uri ); ?>" method="post" name="sub-form">
+        <?php wp_nonce_field( 'stcr_request_management_action', 'stcr_request_management_nonce' ); ?>
         <fieldset style="border:0">
             <?php if ( $challenge_question_state == 'yes' ) : ?>
                 <p>
