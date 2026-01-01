@@ -7,7 +7,7 @@ const copies = [
   // DataTables
   {
     from: 'node_modules/datatables.net/js',
-    to:   'src/vendor/datatables/media/js'
+    to:   'src/vendor/datatables.net/js'
   },
   {
     from: 'node_modules/datatables.net-bs4/css',

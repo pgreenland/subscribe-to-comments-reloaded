@@ -4,14 +4,13 @@
   "description": "Subscribe to Comments Reloaded WordPress Plugin",
   "scripts": {
     "clean": "node scripts/clean.js",
-    "sass": "sass src/includes/sass:src/includes/css --no-source-map",
     "sass:watch": "sass src/includes/sass:src/includes/css --watch --no-source-map",
     "lint": "eslint src/**/*.js",
     "copy:vendor": "node scripts/copy-vendor.js",
     "build:css": "sass src/includes/sass:build/includes/css --style compressed --no-source-map",
     "build:copy": "node scripts/build-copy.js",
     "zip": "node scripts/create-zip.js",
-    "build": "npm run clean && npm run copy:vendor && npm run build:css && npm run build:copy && npm run zip",
+    "build": "npm run clean && npm run lint && npm run copy:vendor && npm run build:css && npm run build:copy && npm run zip",
     "dev": "npm run sass:watch"
   },
   "devDependencies": {

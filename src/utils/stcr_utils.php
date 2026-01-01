@@ -565,18 +565,17 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_utils') )
             wp_register_script( 'stcr-admin-js', $stcr_admin_js, array( 'jquery' ) );
             wp_register_script( 'bootstrap', plugins_url( '/vendor/bootstrap/dist/js/bootstrap.bundle.min.js', STCR_PLUGIN_FILE ), array( 'jquery' ), false, true );
             wp_register_script( 'webui-popover', plugins_url( '/vendor/webui-popover/dist/jquery.webui-popover.min.js', STCR_PLUGIN_FILE ), array( 'jquery' ), false, true );
-            wp_register_script( 'dataTables', plugins_url( '/vendor/datatables/media/js/jquery.dataTables.min.js', STCR_PLUGIN_FILE ), array( 'jquery' ), false, true );
-            wp_register_script( 'dataTables-bootstrap4', plugins_url( '/vendor/datatables/media/js/dataTables.bootstrap4.min.js', STCR_PLUGIN_FILE ), array( 'jquery' ), false, true );
+            wp_register_script( 'dataTables', plugins_url( '/vendor/datatables.net/js/jquery.dataTables.min.js', STCR_PLUGIN_FILE ), array( 'jquery' ), false, true );
+            wp_register_script( 'dataTables-bootstrap4', plugins_url( '/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js', STCR_PLUGIN_FILE ), array( 'jquery' ), false, true );
             wp_register_script( 'dataTables-responsive', plugins_url( '/vendor/datatables.net-responsive/js/dataTables.responsive.min.js', STCR_PLUGIN_FILE ), array( 'jquery' ), false, true );
             wp_register_script( 'responsive-bootstrap4', plugins_url( '/vendor/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js', STCR_PLUGIN_FILE ), array( 'jquery' ), false, true );
 
-            // rergister styles
+            // register styles
             wp_register_style( 'stcr-admin-style',  $stcr_admin_css );
-            wp_register_style( 'fontawesome', plugins_url( '/vendor/Font-Awesome/web-fonts-with-css/css/fontawesome-all.min.css', STCR_PLUGIN_FILE ) );
+            wp_register_style( 'fontawesome', plugins_url( '/vendor/Font-Awesome/web-fonts-with-css/css/font-awesome.min.css', STCR_PLUGIN_FILE ) );
             wp_register_style( 'bootstrap', plugins_url( '/vendor/bootstrap/dist/css/bootstrap.min.css', STCR_PLUGIN_FILE ) );
             wp_register_style( 'webui-popover', plugins_url( '/vendor/webui-popover/dist/jquery.webui-popover.min.css', STCR_PLUGIN_FILE ) );
-            wp_register_style( 'datatables', plugins_url( '/vendor/datatables/media/css/jquery.dataTables.min.css', STCR_PLUGIN_FILE ) );
-            wp_register_style( 'datatables-bootstrap4', plugins_url( '/vendor/datatables/media/css/dataTables.bootstrap4.min.css', STCR_PLUGIN_FILE ) );
+            wp_register_style( 'datatables-bootstrap4', plugins_url( '/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css', STCR_PLUGIN_FILE ) );
             wp_register_style( 'datatables-net-responsive-bs4', plugins_url( '/vendor/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css', STCR_PLUGIN_FILE ) );
 
             // check if we're on our pages
@@ -596,7 +595,6 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_utils') )
                 wp_enqueue_style( 'fontawesome' );
                 wp_enqueue_style( 'bootstrap' );
                 wp_enqueue_style( 'webui-popover' );
-                wp_enqueue_style( 'datatables' );
                 wp_enqueue_style( 'datatables-bootstrap4' );
                 wp_enqueue_style( 'datatables-net-responsive-bs4' );
 
