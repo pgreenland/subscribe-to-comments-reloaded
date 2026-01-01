@@ -640,9 +640,9 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_utils') )
 		 */
 		public function register_plugin_scripts() {
 
-            $stcr_font_awesome_css = plugins_url( '/includes/css/font-awesome.min.css', STCR_PLUGIN_FILE );
             // Font Awesome
             if ( get_option( 'subscribe_reloaded_enable_font_awesome' ) == "yes" ) {
+                $stcr_font_awesome_css = plugins_url( '/vendor/Font-Awesome/web-fonts-with-css/css/font-awesome.min.css', STCR_PLUGIN_FILE );
                 wp_register_style( 'stcr-font-awesome', $stcr_font_awesome_css );
                 wp_enqueue_style('stcr-font-awesome');
             }
