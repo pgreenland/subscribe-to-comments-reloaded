@@ -245,7 +245,7 @@ Styles use on form styles. Helpful to customize Bootstrap behavior.
   width: 58px;
   line-height: 26px;
   font-size: 11px;
-  color: #949494;
+  color: rgb(148, 148, 148);
   text-align: center;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
   cursor: pointer;
@@ -432,13 +432,13 @@ table.subscribers-table thead th span {
 
 @media screen and (max-width: 651px) {
   table.dataTable.dtr-inline.collapsed > tbody > tr[role=row] > td:first-child,
-table.dataTable.dtr-inline.collapsed > tbody > tr[role=row] > th:first-child {
+  table.dataTable.dtr-inline.collapsed > tbody > tr[role=row] > th:first-child {
     padding-left: 40px !important;
   }
 }
 @media screen and (max-width: 350px) {
   table.dataTable.dtr-inline.collapsed > tbody > tr[role=row] > td:first-child,
-table.dataTable.dtr-inline.collapsed > tbody > tr[role=row] > th:first-child {
+  table.dataTable.dtr-inline.collapsed > tbody > tr[role=row] > th:first-child {
     padding-left: 57px !important;
   }
 }
