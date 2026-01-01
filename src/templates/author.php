@@ -6,7 +6,7 @@ if ( ! function_exists( 'add_action' ) ) {
 }
 
 global $wp_subscribe_reloaded;
-$post_permalink = null;
+$post_permalink = '';
 
 if (array_key_exists('post_permalink', $_GET))
 {
@@ -16,7 +16,8 @@ if (array_key_exists('post_permalink', $_GET))
     }
 }
 
-if ( strpos( $post_permalink, home_url( '/' ) ) === false ) {
+// Fallback to home URL if the value is missing or doesn't belong to this site.
+if ( empty( $post_permalink ) || strpos( $post_permalink, home_url( '/' ) ) === false ) {
 	$post_permalink = home_url( '/' );
 }
 
