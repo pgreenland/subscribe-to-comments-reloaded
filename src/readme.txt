@@ -1,13 +1,13 @@
 === Subscribe To Comments Reloaded ===
 Author: WPKube
-Contributors: WPKube
+Contributors: WPKube, pgreenland
 Tags: comments, subscribe, subscribe to comments, subscribe to comments reloaded, email, email notification, subscriptions, commenting, reply, reply to comments, post notification, comment notification, automatic comment notification, email signup
 Plugin URI: http://subscribe-reloaded.com/
 Requires at least: 4.0
 Requires PHP: 5.6
 Requires MySQL: 5.6
-Tested up to: 6.4
-Stable tag: 240119
+Tested up to: 6.9
+Stable tag: 260101
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,12 @@ Just go to the Options Panel and click the generate button. By generating a new 
 7. Manage the subscriptions on the Frontend Side.
 
 == Changelog ==
+= v260101 =
+* **Security & Compatibility Update**
+* **Fix** Resolve warnings with WP 6.9.
+* **Security** Add additional CSRF protection, improves input sanitization.
+* **Tweak** Minor tweaks for Python 8.3.
+
 = v240119 =
 * **Important** Security fixes
 * **Tweak** Select option label changed from "All" to "All new comments"

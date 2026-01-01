@@ -1,6 +1,11 @@
 
 == Upgrade Notice ==
 
+= v260101 =
+**Compatibility Update** Resolve warnings with WP 6.9.
+**Security Patch** Add additional CSRF protection, improves input sanitization.
+**Compatibility Update** Minor tweaks for Python 8.3
+
 = v180212 =
 **Security Patch** This version add a patch for some security issues.
 **Fix Critical Bug** This version fix a critical bug causing issues with wrong database collations.
