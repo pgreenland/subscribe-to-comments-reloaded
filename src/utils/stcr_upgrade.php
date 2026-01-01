@@ -109,7 +109,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_upgrade') ) {
 				foreach ( $stcr_data as $row ) {
 					if ( $row->option_name != 'subscribe_reloaded_deferred_admin_notices' ) {
 						$optionValue = $row->option_value;
-						$optionValue = html_entity_decode( stripslashes( $optionValue ), ENT_QUOTES, 'UTF-8' );
+						$optionValue = html_entity_decode( stripslashes( $optionValue ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 						$optionValue = esc_attr( $optionValue );
 						update_option( $row->option_name, $optionValue );
 					}

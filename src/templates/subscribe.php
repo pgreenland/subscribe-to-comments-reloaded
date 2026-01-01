@@ -180,12 +180,12 @@ if ( ! empty( $email ) ) {
         if ( get_option( 'subscribe_reloaded_enable_double_check' ) == 'yes' && ! $wp_subscribe_reloaded->stcr->is_user_subscribed( $post_ID, $clean_email, 'C' ) ) {
             $wp_subscribe_reloaded->stcr->add_subscription( $post_ID, $clean_email, 'YC' );
             $wp_subscribe_reloaded->stcr->confirmation_email( $post_ID, $clean_email );
-            $message = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_subscription_confirmed_dci' ) ), ENT_QUOTES, 'UTF-8' );
+            $message = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_subscription_confirmed_dci' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 
         // not double check, add subscription
         } else {
             $this->add_subscription( $post_ID, $clean_email, 'Y' );
-            $message = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_subscription_confirmed' ) ), ENT_QUOTES, 'UTF-8' );
+            $message = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_subscription_confirmed' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
         }
 
         // new subscription message
@@ -214,7 +214,7 @@ if ( ! empty( $email ) ) {
     }
 
     // output message for subscribing without commenting
-    $message = str_replace( '[post_permalink]', $post_permalink, html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_subscribe_without_commenting' ) ), ENT_QUOTES, 'UTF-8' ) );
+    $message = str_replace( '[post_permalink]', $post_permalink, html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_subscribe_without_commenting' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
     if ( function_exists( 'qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage' ) ) {
         $message = str_replace( '[post_title]', qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage( $target_post->post_title ), $message );
         $message = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage( $message );
@@ -293,7 +293,7 @@ if ( $use_captcha == 'yes' && $valid_captcha && 'v3' == $recaptcha_version ) {
 if ( ! $valid_all ) {
 
     // message for subscribing without commenting
-    $message = str_replace( '[post_permalink]', $post_permalink, html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_subscribe_without_commenting' ) ), ENT_QUOTES, 'UTF-8' ) );
+    $message = str_replace( '[post_permalink]', $post_permalink, html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_subscribe_without_commenting' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
     if ( function_exists( 'qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage' ) ) {
         $message = str_replace( '[post_title]', qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage( $target_post->post_title ), $message );
         $message = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage( $message );

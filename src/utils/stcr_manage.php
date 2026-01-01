@@ -121,8 +121,8 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_manage') )
 			// Retrieve the options from the database
 			$from_name    = stripslashes( get_option( 'subscribe_reloaded_from_name', 'admin' ) );
 			$from_email   = get_option( 'subscribe_reloaded_from_email', get_bloginfo( 'admin_email' ) );
-			$subject      = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_double_check_subject', 'Please confirm your subscribtion to [post_title]' ) ), ENT_COMPAT, 'UTF-8' );
-			$message      = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_double_check_content', '' ) ), ENT_COMPAT, 'UTF-8' );
+			$subject      = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_double_check_subject', 'Please confirm your subscribtion to [post_title]' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+			$message      = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_double_check_content', '' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 			$manager_link = get_bloginfo( 'url' ) . get_option( 'subscribe_reloaded_manager_page', '/comment-subscriptions/' );
 			if ( function_exists( 'qtrans_convertURL' ) ) {
 				$manager_link = qtrans_convertURL( $manager_link );
@@ -679,7 +679,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_manage') )
 		 * Adds custom HTML code to the HEAD section of the management page
 		 */
 		public function add_custom_header_meta() {
-			$a = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_custom_header_meta', '' ) ), ENT_QUOTES, 'UTF-8' );
+			$a = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_custom_header_meta', '' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 			echo wp_kses(
 				$a,
 				array(
@@ -702,7 +702,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_manage') )
 			$virtual_page_enabled = get_option( 'subscribe_reloaded_manager_page_enabled', 'yes' );
 
 			if ( 'no' === $virtual_page_enabled ) {
-				$a = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_custom_header_meta', '' ) ), ENT_QUOTES, 'UTF-8' );
+				$a = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_custom_header_meta', '' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 				echo wp_kses(
 					$a,
 					array(

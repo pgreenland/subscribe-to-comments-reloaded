@@ -477,7 +477,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_utils') )
 		public function send_email( $_settings )
 		{	// Retrieve the options from the database
 			$from_name    = html_entity_decode(
-								stripslashes( get_option( 'subscribe_reloaded_from_name', 'admin' ) ), ENT_QUOTES, 'UTF-8' );
+								stripslashes( get_option( 'subscribe_reloaded_from_name', 'admin' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 			$from_email   = get_option( 'subscribe_reloaded_from_email', get_bloginfo( 'admin_email' ) );
 			$reply_to     = get_option( "subscribe_reloaded_reply_to" ) == ''
 									? $from_email : get_option( "subscribe_reloaded_reply_to" );
@@ -729,7 +729,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_utils') )
             else
             {
                 $value = get_option( 'subscribe_reloaded_' . $_option, $_default );
-                $value = ( ! is_array( $value ) ) ? html_entity_decode( stripslashes( $value ), ENT_QUOTES, 'UTF-8' ) : wp_unslash( $value );
+                $value = ( ! is_array( $value ) ) ? html_entity_decode( stripslashes( $value ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) : wp_unslash( $value );
                 $value = ( ! is_array( $value ) ) ? stripslashes( $value ) : wp_unslash( $value );
                 // Set the cache value
                 $this->menu_opts_cache[$_option] = $value;

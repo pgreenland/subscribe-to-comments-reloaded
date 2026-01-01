@@ -142,9 +142,9 @@ if ( ! empty( $email ) ) {
     if ( $valid_all ) {
 
         // Send management link
-        $subject        = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_management_subject', 'Manage your subscriptions on [blog_name]' ) ), ENT_QUOTES, 'UTF-8' );
-        $page_message   = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_management_content', '' ) ), ENT_QUOTES, 'UTF-8' );
-        $email_message  = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_management_email_content', '' ) ), ENT_QUOTES, 'UTF-8' );
+        $subject        = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_management_subject', 'Manage your subscriptions on [blog_name]' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+        $page_message   = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_management_content', '' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+        $email_message  = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_management_email_content', '' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
         $manager_link   = get_bloginfo( 'url' ) . get_option( 'subscribe_reloaded_manager_page', '/comment-subscriptions/' );
         $one_click_unsubscribe_link = $manager_link;
         if ( function_exists( 'qtrans_convertURL' ) ) {
@@ -200,7 +200,7 @@ if ( ! empty( $email ) ) {
 // email address not supplied
 } else {
 
-    $message = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_request_mgmt_link' ) ), ENT_QUOTES, 'UTF-8' );
+    $message = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_request_mgmt_link' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 
     // get email address
     $email = '';
@@ -289,7 +289,7 @@ if ( $use_captcha == 'yes' && $valid_captcha && 'v3' == $recaptcha_version ) {
 // email invalid
 if( ! $valid_all ) {
 
-    $message = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_request_mgmt_link' ) ), ENT_QUOTES, 'UTF-8' );
+    $message = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_request_mgmt_link' ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 
     if ( function_exists( 'qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage' ) ) {
         $message = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage( $message );
