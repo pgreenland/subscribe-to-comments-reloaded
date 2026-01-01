@@ -48,7 +48,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
      * subscribe_reloaded_show ( Displays the checkbox to allow visitors to subscribe )
      * set_user_cookie ( Set a cookie if the user just subscribed without commenting )
      * management_page_sc ( Management page shortcode )
-     * comment_content_prepend ( Add custom content before comment content )
+     * comment_content_append ( Add custom content after comment content )
 	 */
 	class wp_subscribe_reloaded extends stcr_manage {
 
@@ -154,7 +154,8 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
                 }
 
                 // filter to add custom output before comment content
-				add_filter( 'comment_text', array( $this, 'comment_content_prepend' ), 10, 2 );
+				// PG: Disable filter as comment is stripped in wp-includes/blocks/comment-content.php, via wp_kses, removing the nice formatting.
+				//add_filter( 'comment_text', array( $this, 'comment_content_append' ), 10, 2 );
 
 				// script to move the subscription form
 				add_action( 'wp_footer', array( $this, 'move_form_with_js' ), 20 );
@@ -1792,11 +1793,11 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
         }
 
         /**
-         * Add custom output before comment content
+         * Add custom output after comment content
          *
          * @since 190801
          */
-        public function comment_content_prepend( $comment_text, $comment = null ) {
+        public function comment_content_append( $comment_text, $comment = null ) {
 
 			// do not proceed if comment info is not passed
 			if ( empty( $comment ) || ! isset( $comment->comment_approved ) ) {
@@ -1811,16 +1812,15 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
                 return $comment_text;
             }
 
-            $prepend = '';
+            $append = '';
 
             // comment held for moderation and email is subscribed to the post
             if ( $comment->comment_approved == '0' && $wp_subscribe_reloaded->stcr->is_user_subscribed( $post->ID, $comment->comment_author_email, 'C' ) ) {
-                $prepend = '<p><em>' . esc_html__( 'Check your email to confirm your subscription.', 'subscribe-to-comments-reloaded' ) . '</em></p>';
+                $append = '<p><em>' . esc_html__( 'Check your email to confirm your notification subscription.', 'subscribe-to-comments-reloaded' ) . '</em></p>';
             }
 
             // pass it back
-            return $prepend . $comment_text;
-
+            return $comment_text . $append;
 		}
 
 		/**

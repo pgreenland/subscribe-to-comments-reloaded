@@ -97,7 +97,7 @@ msgid "Replies to my comments"
 msgstr ""
 
 #: wp_subscribe_reloaded.php:1661
-msgid "Check your email to confirm your subscription."
+msgid "Check your email to confirm your notification subscription.."
 msgstr ""
 
 #: classes/stcr_i18n.php:48 classes/stcr_i18n.php:53
