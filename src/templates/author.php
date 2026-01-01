@@ -23,38 +23,43 @@ if ( strpos( $post_permalink, home_url( '/' ) ) === false ) {
 ob_start();
 
 if ( ! empty( $_POST['email_list'] ) ) {
-	$email_list = array();
-	foreach ( $_POST['email_list'] as $a_email ) {
-		if ( ! in_array( $a_email, $email_list ) ) {
-			$email_list[] = urldecode( $a_email );
+	// Verify nonce for CSRF protection
+	if ( ! isset( $_POST['stcr_author_nonce'] ) || ! wp_verify_nonce( $_POST['stcr_author_nonce'], 'stcr_author_action' ) ) {
+		echo '<p class="error">' . esc_html__( 'Security check failed. Please try again.', 'subscribe-to-comments-reloaded' ) . '</p>';
+	} else {
+		$email_list = array();
+		foreach ( $_POST['email_list'] as $a_email ) {
+			if ( ! in_array( $a_email, $email_list ) ) {
+				$email_list[] = urldecode( $a_email );
+			}
 		}
-	}
 
-	$action = ! empty( $_POST['sra'] ) ? sanitize_text_field( wp_unslash( $_POST['sra'] ) ) : ( ! empty( $_GET['sra'] ) ? sanitize_text_field( wp_unslash( $_GET['sra'] ) ) : '' );
-    $action = sanitize_text_field( $action );
-	switch ( $action ) {
-	case 'delete':
-		$rows_affected = $wp_subscribe_reloaded->stcr->delete_subscriptions( $post_ID, $email_list );
-		echo '<p class="updated">' . esc_html__( 'Subscriptions deleted:', 'subscribe-to-comments-reloaded' ) . esc_html( $rows_affected ) . '</p>';
-		break;
-	case 'suspend':
-		$rows_affected = $wp_subscribe_reloaded->stcr->update_subscription_status( $post_ID, $email_list, 'C' );
-		echo '<p class="updated">' . esc_html__( 'Subscriptions suspended:', 'subscribe-to-comments-reloaded' ) . esc_html( $rows_affected ) . '</p>';
-		break;
-	case 'activate':
-		$rows_affected = $wp_subscribe_reloaded->stcr->update_subscription_status( $post_ID, $email_list, '-C' );
-		echo '<p class="updated">' . esc_html__( 'Subscriptions activated:', 'subscribe-to-comments-reloaded' ) . esc_html( $rows_affected ) . '</p>';
-		break;
-	case 'force_y':
-		$rows_affected = $wp_subscribe_reloaded->stcr->update_subscription_status( $post_ID, $email_list, 'Y' );
-		echo '<p class="updated">' . esc_html__( 'Subscriptions updated:', 'subscribe-to-comments-reloaded' ) . esc_html( $rows_affected ) . '</p>';
-		break;
-	case 'force_r':
-		$rows_affected = $wp_subscribe_reloaded->stcr->update_subscription_status( $post_ID, $email_list, 'R' );
-		echo '<p class="updated">' . esc_html__( 'Subscriptions updated:', 'subscribe-to-comments-reloaded' ) . esc_html( $rows_affected ) . '</p>';
-		break;
-	default:
-		break;
+		$action = ! empty( $_POST['sra'] ) ? sanitize_text_field( wp_unslash( $_POST['sra'] ) ) : ( ! empty( $_GET['sra'] ) ? sanitize_text_field( wp_unslash( $_GET['sra'] ) ) : '' );
+		$action = sanitize_text_field( $action );
+		switch ( $action ) {
+		case 'delete':
+			$rows_affected = $wp_subscribe_reloaded->stcr->delete_subscriptions( $post_ID, $email_list );
+			echo '<p class="updated">' . esc_html__( 'Subscriptions deleted:', 'subscribe-to-comments-reloaded' ) . esc_html( $rows_affected ) . '</p>';
+			break;
+		case 'suspend':
+			$rows_affected = $wp_subscribe_reloaded->stcr->update_subscription_status( $post_ID, $email_list, 'C' );
+			echo '<p class="updated">' . esc_html__( 'Subscriptions suspended:', 'subscribe-to-comments-reloaded' ) . esc_html( $rows_affected ) . '</p>';
+			break;
+		case 'activate':
+			$rows_affected = $wp_subscribe_reloaded->stcr->update_subscription_status( $post_ID, $email_list, '-C' );
+			echo '<p class="updated">' . esc_html__( 'Subscriptions activated:', 'subscribe-to-comments-reloaded' ) . esc_html( $rows_affected ) . '</p>';
+			break;
+		case 'force_y':
+			$rows_affected = $wp_subscribe_reloaded->stcr->update_subscription_status( $post_ID, $email_list, 'Y' );
+			echo '<p class="updated">' . esc_html__( 'Subscriptions updated:', 'subscribe-to-comments-reloaded' ) . esc_html( $rows_affected ) . '</p>';
+			break;
+		case 'force_r':
+			$rows_affected = $wp_subscribe_reloaded->stcr->update_subscription_status( $post_ID, $email_list, 'R' );
+			echo '<p class="updated">' . esc_html__( 'Subscriptions updated:', 'subscribe-to-comments-reloaded' ) . esc_html( $rows_affected ) . '</p>';
+			break;
+		default:
+			break;
+		}
 	}
 }
 $message = html_entity_decode( stripslashes( get_option( 'subscribe_reloaded_author_text' ) ), ENT_QUOTES, 'UTF-8' );
@@ -66,6 +71,7 @@ echo "<p>" . wp_kses( $message, wp_kses_allowed_html( 'post' ) ) . "</p>";
 
 	<?php $server_request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : ''; ?>
 	<form action="<?php echo esc_url( $server_request_uri ); ?>" method="post" id="email_list_form" name="email_list_form" onsubmit="if(this.sra[0].checked) return confirm('<?php esc_attr_e( 'Please remember: this operation cannot be undone. Are you sure you want to proceed?', 'subscribe-to-comments-reloaded' ); ?>')">
+		<?php wp_nonce_field( 'stcr_author_action', 'stcr_author_nonce' ); ?>
 		<fieldset style="border:0">
 			<?php
                 $subscriptions = $wp_subscribe_reloaded->stcr->get_subscriptions( 'post_id', 'equals', $post_ID, 'dt', 'ASC' );
