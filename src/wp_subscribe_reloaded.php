@@ -120,7 +120,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
             add_action('_cron_log_file_purge', array($this, 'log_file_purge'), 10 );
 
             // load text domain
-            add_action( 'plugins_loaded', array( $this, 'subscribe_reloaded_load_plugin_textdomain' ) );
+            add_action( 'init', array( $this, 'subscribe_reloaded_load_plugin_textdomain' ) );
 
             // front end
             if ( ! is_admin() ) {
@@ -184,13 +184,13 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
 					$this->upgrade->migrate_post_type_support();
 					$supported_post_types = get_option( 'subscribe_reloaded_post_type_supports' );
 				}
-				
+
 				if ( in_array( 'stcr_none', $supported_post_types ) ) {
 					$supported_post_types = array_flip( $supported_post_types );
 					unset( $supported_post_types['stcr_none'] );
 					$supported_post_types = array_flip( $supported_post_types );
 				}
-				
+
 				foreach ( $supported_post_types as $post_type ) {
 					add_filter( 'manage_' . $post_type . '_posts_columns', array( $this, 'add_column_header' ) );
 					add_action( 'manage_' . $post_type . '_posts_custom_column', array( $this, 'add_post_column' ) );
