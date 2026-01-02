@@ -9,7 +9,7 @@ if ( ! function_exists( 'add_action' ) ) {
 global $wp_subscribe_reloaded;
 
 // The the page where the user is coming from
-$post_permalink = null;
+$post_permalink = '';
 $current_user_email = null; // Comes from wp_subscribe-to-comments-reloaded\subscribe_reloaded_manage()
 $ID = $target_post;
 $valid_all = true;
