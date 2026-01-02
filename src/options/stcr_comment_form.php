@@ -363,6 +363,7 @@ if ( isset( $_POST['options'] ) ) {
             </form>
         </div>
 
+        <!--
         <div class="col-md-3">
             <div class="card card-font-size">
                 <div class="card-body">
@@ -376,7 +377,7 @@ if ( isset( $_POST['options'] ) ) {
                 </div>
             </div>
         </div>
-
+        -->
     </div>
 </div>
 

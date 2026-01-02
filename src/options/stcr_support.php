@@ -39,6 +39,7 @@ if ( ! function_exists( 'is_admin' ) || ! is_admin() ) {
             </div>
         </div>
 
+        <!--
         <div class="col-md-3">
             <div class="card card-font-size">
                 <div class="card-body">
@@ -52,6 +53,6 @@ if ( ! function_exists( 'is_admin' ) || ! is_admin() ) {
                 </div>
             </div>
         </div>
-
+        -->
     </div>
 </div>

@@ -232,7 +232,7 @@ if ( is_readable( trailingslashit( dirname( STCR_PLUGIN_FILE ) ) . 'options/pane
                                       echo "<tbody>";
 
                                     foreach ( $subscriptions as $a_subscription ) {
-                                        
+
                                         $title     = get_the_title( $a_subscription->post_id );
                                         $title     = ( strlen( $title ) > 35 ) ? substr( $title, 0, 35 ) . '..' : $title;
                                         if( $wp_locale->text_direction == 'rtl' )
@@ -320,6 +320,7 @@ if ( is_readable( trailingslashit( dirname( STCR_PLUGIN_FILE ) ) . 'options/pane
 
     <div class="clearfix"></div>
 
+    <!--
     <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-6 mx-auto">
             <div class="card" style="max-width: 100% !important;">
@@ -335,6 +336,7 @@ if ( is_readable( trailingslashit( dirname( STCR_PLUGIN_FILE ) ) . 'options/pane
             </div>
         </div>
     </div>
+    -->
 </div>
 
 <?php

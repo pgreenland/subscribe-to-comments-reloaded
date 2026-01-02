@@ -360,6 +360,7 @@ wp_print_scripts( 'quicktags' );
                 </form>
             </div>
 
+            <!--
             <div class="col-md-3">
                 <div class="card card-font-size">
                     <div class="card-body">
@@ -373,7 +374,7 @@ wp_print_scripts( 'quicktags' );
                     </div>
                 </div>
             </div>
-
+            -->
         </div>
     </div>
 

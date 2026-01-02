@@ -94,7 +94,7 @@ if ( array_key_exists( "purge_log", $_POST ) ) {
             $message_type = "notice-warning";
         }
     }
-    
+
     // Display the message
     echo "<div class='notice " . esc_attr( $message_type ) . "'><p>";
     echo esc_html( $message );
@@ -284,7 +284,7 @@ else {
                             <tbody>
                             <?php foreach ( $log as $key => $value ) : ?>
                                 <tr>
-                                    <td class="text-left"><?php 
+                                    <td class="text-left"><?php
                                         // unix to human readable date
                                         echo esc_html( date( 'Y-m-d H:i:s', $value['time'] ) );
                                     ?></td>
@@ -816,6 +816,7 @@ else {
 
             </div>
 
+            <!--
             <div class="col-md-3">
                 <div class="card card-font-size">
                     <div class="card-body">
@@ -829,7 +830,7 @@ else {
                     </div>
                 </div>
             </div>
-
+            -->
         </div>
     </div>
 <?php
