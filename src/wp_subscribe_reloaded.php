@@ -740,7 +740,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
 		 *
 		 * @since 190705 cleanup
 		 */
-		public function subscribe_reloaded_manage( $_posts = '', $_query = '' ) {
+		public function subscribe_reloaded_manage( $_posts = '', $_query = '', $_shortcode = false ) {
 
 			// vars
 			global $current_user;
@@ -760,14 +760,15 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
 				return;
 			}
 
-            global $wp_query;
+			global $wp_query;
 
-            // PG: This feels hacky, rendering relies on the 'this_posts' filter hook, which is called multiple times in a single request.
-            // For example for header, content and footer. While we toy with the internal state below to trick WP into rendering our management page
-            // we don't want other WP_Query instances to end up with a copy of our fake post.
-            if ($_query != $wp_query) {
-                return $_posts;
-            }
+			// PG: This feels hacky, rendering relies on the 'this_posts' filter hook, which is called multiple times in a single request.
+			// For example for header, content and footer. While we toy with the internal state below to trick WP into rendering our management page
+			// we don't want other WP_Query instances to end up with a copy of our fake post.
+			// unless it's a shortcode call, in which case we do want to return our fake post.
+			if ($_query != $wp_query && !$_shortcode) {
+				return $_posts;
+			}
 
 			try {
 
@@ -988,9 +989,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
                 // Seems like WP adds its own HTML formatting code to the content, we don't need that here
 				remove_filter('the_content', 'wpautop');
 
-                // Look like the plugin is call twice and therefor subscribe to the "the_posts" filter again so we need to
-                // tell to WordPress to not register again.
-                // remove_filter("the_posts", array($this, "subscribe_reloaded_manage"));
+				// add custom HEAD meta tags
                 add_action('wp_head', array($this, 'add_custom_header_meta'));
 
 			// log the error
@@ -1787,7 +1786,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
          */
         public function management_page_sc() {
 
-            $data = $this->subscribe_reloaded_manage();
+            $data = $this->subscribe_reloaded_manage(_shortcode:true);
             return $data[0]->post_content;
 
         }
