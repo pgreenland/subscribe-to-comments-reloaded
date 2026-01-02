@@ -3,10 +3,17 @@ Subscribe to Comments Reloaded
 
 Subscribe to Comments Reloaded allows commenters to sign up for e-mail notifications of subsequent replies.
 
-Download at WordPress.org: http://wordpress.org/plugins/subscribe-to-comments-reloaded/
+Original author version available at WordPress.org: http://wordpress.org/plugins/subscribe-to-comments-reloaded/
+
+This repo is a fork, primarily for my own use. I will be creating occasional releases if/when issues are found but aren't planning on developing further.
 
 ### Development
 
-If you would like to contribute to the development I strongly recommend you to pull your code request to the [development branch](https://github.com/stcr/subscribe-to-comments-reloaded/tree/development) instead. The master branch is only a copy of the WordPress version and will only be updated on releases.
+NodeJS is used for development, as an example on Debian a build may be performed with:
 
-StCR development version now uses **Gulp** and **Composer**.
+```
+apt-get install nodejs npm
+./build.sh
+```
+
+Output zip file will be generated in the `dist` directory.
