@@ -95,6 +95,11 @@ Just go to the Options Panel and click the generate button. By generating a new 
 7. Manage the subscriptions on the Frontend Side.
 
 == Changelog ==
+= v260102 =
+* **Fix** Ensure management page can be rendered via shortcode
+* **Fix** Correct PHP warning passing null to string functions
+* **Tweak** Hide links to original support page to save confusion
+
 = v260101 =
 * **Security & Compatibility Update**
 * **Fix** Resolve warnings with WP 6.9.
@@ -147,7 +152,7 @@ Just go to the Options Panel and click the generate button. By generating a new 
 * **Fix** Fix issue with missing submit button when using "stcr_disable_subscription" custom field
 * **Tweak** Bump up WP "tested up to" version to 5.7
 
-= v210126 = 
+= v210126 =
 * **New** Option to disable the "subscribe without commenting" and "request management link" pages. ( WP Admin > StCR > Management Page )
 
 = v210110 =
@@ -230,13 +235,13 @@ Just go to the Options Panel and click the generate button. By generating a new 
 * **Tweak** Info on subscriber and subscriptions amount moved into separate table
 * **Fix** Text domain
 
-= v190426 = 
+= v190426 =
 * **New** Info on the amount of subscribers and subscriptions added in WP admin > StCR > StCR System
 * **Fix** Text domain (for translations) has been changed to the correct domain (from subscribe-reloaded to subscribe-to-comments-reloaded)
 * **Fix** Issue with undefined is_rtl function
 * **Fix** Missing blank space between sentences (below comment form when subscribed)
 * **Fix** Undefined variable notices for $order_status and $order_dt
-* **Fix** Temporarily hidden an unused option in StCR > Management Page to avoid confusion. 
+* **Fix** Temporarily hidden an unused option in StCR > Management Page to avoid confusion.
 * **Fix** Removed localization for non textual strings
 * **Fix** Fixed incorrectly localized textual strings
 

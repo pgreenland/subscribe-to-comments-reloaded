@@ -1,6 +1,11 @@
 
 == Upgrade Notice ==
 
+= v260102 =
+**Fix** Ensure management page can be rendered via shortcode
+**Fix** Correct PHP warning passing null to string functions
+**Tweak** Hide links to original support page to save confusion
+
 = v260101 =
 **Compatibility Update** Resolve warnings with WP 6.9.
 **Security Patch** Add additional CSRF protection, improves input sanitization.
