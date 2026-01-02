@@ -410,12 +410,12 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\stcr_manage') )
 				// 				 "stcr_subscribers_emails",
 				// 				 array( $this, "stcr_option_subscribers_emails" ) );
 
-				add_submenu_page( $parent_slug ,
-								esc_html__( 'Support', 'subscribe-to-comments-reloaded' ),
-								esc_html__( 'Support', 'subscribe-to-comments-reloaded' ),
-								 $capability,
-								 "stcr_support",
-								 array( $this, "stcr_option_support" ) );
+//				add_submenu_page( $parent_slug ,
+//								esc_html__( 'Support', 'subscribe-to-comments-reloaded' ),
+//								esc_html__( 'Support', 'subscribe-to-comments-reloaded' ),
+//								 $capability,
+//								 "stcr_support",
+//								 array( $this, "stcr_option_support" ) );
 //				add_submenu_page( $parent_slug ,
 //								esc_html__( 'Donate', 'subscribe-to-comments-reloaded' ),
 //								esc_html__( 'Donate', 'subscribe-to-comments-reloaded' ),

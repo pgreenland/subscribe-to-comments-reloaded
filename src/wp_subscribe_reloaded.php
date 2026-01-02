@@ -257,7 +257,7 @@ if( ! class_exists('\\'.__NAMESPACE__.'\\wp_subscribe_reloaded') ) {
                 'stcr_management_page'      => esc_html__( 'Management Page', 'subscribe-to-comments-reloaded' ),
                 'stcr_notifications'        => esc_html__( 'Notifications', 'subscribe-to-comments-reloaded' ),
                 'stcr_options'              => esc_html__( 'Options', 'subscribe-to-comments-reloaded' ),
-                'stcr_support'              => esc_html__( 'Support', 'subscribe-to-comments-reloaded' ),
+//                'stcr_support'              => esc_html__( 'Support', 'subscribe-to-comments-reloaded' ),
                 'stcr_system'               => esc_html__( 'Options', 'subscribe-to-comments-reloaded' )
             );
 
